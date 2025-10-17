@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cidades ESG 🌿</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <h1>🌍 Cidades ESG</h1>
+    <p>Monitoramento de sustentabilidade urbana</p>
+</header>
+
+<main>
+    <section class="form-section">
+        <h2>Adicionar / Editar Cidade</h2>
+        <form id="cidadeForm">
+            <input type="hidden" id="cidadeId">
+
+            <div class="input-group">
+                <label>Nome:</label>
+                <input type="text" id="nome" required placeholder="Ex: Curitiba">
+            </div>
+
+            <div class="input-group">
+                <label>Estado:</label>
+                <input type="text" id="estado" required placeholder="Ex: PR">
+            </div>
+
+            <div class="input-group">
+                <label>População:</label>
+                <input type="number" id="populacao" required min="1">
+            </div>
+
+            <div class="input-group">
+                <label>Índice ESG:</label>
+                <input type="number" id="indiceEsg" required step="0.1" min="0" max="10">
+            </div>
+
+            <button type="submit" class="btn-save">Salvar</button>
+        </form>
+    </section>
+
+    <section class="list-section">
+        <h2>Lista de Cidades</h2>
+        <table id="cidadesTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Estado</th>
+                <th>População</th>
+                <th>Índice ESG</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+</main>
+
+<footer>
+    <p>Desenvolvido com 💚 por Gabriel — Projeto Cidades ESG © 2025</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

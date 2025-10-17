@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # 🐬 Banco de dados MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: cidades_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: cidadesdb
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: cidadesuser
+      MYSQL_PASSWORD: cidades123
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # ☕ Aplicação Spring Boot
+  cidadesesg:
+    build: .
+    container_name: cidadesesg_app
+    restart: always
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/cidadesdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: cidadesuser
+      SPRING_DATASOURCE_PASSWORD: cidades123
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: true
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:
